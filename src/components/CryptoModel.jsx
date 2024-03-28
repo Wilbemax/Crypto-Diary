@@ -16,7 +16,7 @@ export default function CryptoModel({ coin }) {
 				<Tag color={coin.priceChange1d > 0 ? 'green' : 'red'}>
 					{coin.priceChange1d} %
 				</Tag>
-				<Typography.Text strong>1 hour: </Typography.Text>
+				<Typography.Text strong>1 week: </Typography.Text>
 				<Tag color={coin.priceChange1w > 0 ? 'green' : 'red'}>
 					{coin.priceChange1w} %
 				</Tag>

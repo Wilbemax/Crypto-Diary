@@ -1,7 +1,7 @@
 import { Layout, Card, Statistic, List, Spin, Typography, Tag } from 'antd';
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 
-import { capitalize,  } from '../../utils';
+import { capitalize } from '../../utils';
 import { useContext } from 'react';
 import CryptoConext from '../../context/crypto-context';
 
@@ -10,7 +10,7 @@ const siderStyle = {
 };
 
 export default function AppSider() {
-    const {loading, assets} = useContext(CryptoConext)
+	const { loading, assets } = useContext(CryptoConext);
 
 	if (loading) {
 		return <Spin fullscreen />;
@@ -42,15 +42,17 @@ export default function AppSider() {
 								withTag: true,
 							},
 							{ title: 'Asset Amount', value: asset.amount, isPlain: true },
-							// { title: 'Diferents', value: asset.growPercent },
 						]}
 						renderItem={(item) => (
 							<List.Item>
-								<span>{capitalize(asset.id)}</span>
-
+								<span>{item.title}</span>
 
 								<span>
-                                    {item.withTag && <Tag color={asset.grow ? 'green': 'red' }>{asset.growPercent.toFixed(2)}%</Tag>}
+									{item.withTag && (
+										<Tag color={asset.grow ? 'green' : 'red'}>
+											{asset.growPercent.toFixed(2)}%
+										</Tag>
+									)}
 									{item.isPlain && (
 										<Typography.Text> {item.value}</Typography.Text>
 									)}

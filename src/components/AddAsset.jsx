@@ -16,19 +16,28 @@ export default function AddAsset({ onClose }) {
 	const [submited, setSubmeted] = useState(false);
 	const [form] = Form.useForm();
 	const [coin, setCoin] = useState(null);
-	const { crypto, addAsset} = useCrypto();
-    const assetRef = useRef()
+	const { crypto, addNewAsset, assets, updateAsset } = useCrypto();
+	const assetRef = useRef();
+
+	console.log(assets);
 
 	const onFinish = (values) => {
-        const newAsset = {
-            id: coin.id,
-            amount: values.amount,
-            price: values.price, 
-            data: values.data?.$d ?? new Date()
-        }
-        assetRef.current = newAsset
+		const newAsset = {
+			id: coin.id,
+			amount: values.amount,
+			price: values.price,
+			data: values.data?.$d ?? new Date(),
+		};
+		assetRef.current = newAsset;
 		setSubmeted(true);
-        addAsset(newAsset)
+		
+		const existAsset = assets.find((asset) => coin.id === asset.id);
+
+		if (existAsset) {
+			updateAsset(coin.id, newAsset);
+		} else {
+			addNewAsset(newAsset);
+		}
 	};
 
 	const onChange = (date, dateString) => {
@@ -161,7 +170,6 @@ export default function AddAsset({ onClose }) {
 					onChange={onChange}
 					showTime
 					needConfirm={false}
-					
 					style={{ width: '100%' }}
 				/>
 			</Form.Item>

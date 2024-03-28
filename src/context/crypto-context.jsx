@@ -14,19 +14,19 @@ export function CryproContextProvider({ children }) {
 	const [assets, setAssets] = useState([]);
 
 	function mapAsset(assets, result) {
-		return assets.map(asset => {
+		return assets.map((asset) => {
 			const coin = result.find((c) => c.id === asset.id);
 
-		return {
-			grow: asset.price < coin.price,
-			growPercent: percentDifferents(asset.price, coin.price),
-			totalAmount: asset.amount * coin.price,
-			totalProfit: asset.amount * coin.price - asset.amount * asset.price,
-
-			...asset,
-		};
-		})}
-	
+			return {
+				grow: asset.price < coin.price,
+				growPercent: percentDifferents(asset.price, coin.price),
+				totalAmount: asset.amount * coin.price,
+				totalProfit: asset.amount * coin.price - asset.amount * asset.price,
+				name: coin.name,
+				...asset,
+			};
+		});
+	}
 
 	useEffect(() => {
 		async function preload() {
@@ -35,18 +35,27 @@ export function CryproContextProvider({ children }) {
 			const assets = await fetchAssets();
 
 			setCrypto(result);
-			setAssets( mapAsset(assets,result));
+			setAssets(mapAsset(assets, result));
 			setLoading(false);
 		}
 		preload();
 	}, []);
 
-	function addAsset(newAsset) {
+	function addNewAsset(newAsset) {
+		
 		setAssets((prev) => mapAsset([...prev, newAsset], crypto));
+	}
+	function updateAsset(coin, newAsset){
+		// const existAsset = mapAsset([assets.find( a => coin === a.id)], crypto)
+		// const doneAsset = mapAsset([newAsset], crypto)
+		// const addAsset = 
+
+		//доделать функционал обновления ассета если они совпадаю по суит надо сумировать сумму денег и эмаунта а вот с тотал профит надо подумать, возможно нужно просто посчиатьать два прфита и из первого вычесть вторео 
+
 	}
 
 	return (
-		<CryptoConext.Provider value={{ loading, assets, crypto, addAsset }}>
+		<CryptoConext.Provider value={{ loading, assets, crypto, addNewAsset, updateAsset }}>
 			{children}
 		</CryptoConext.Provider>
 	);
