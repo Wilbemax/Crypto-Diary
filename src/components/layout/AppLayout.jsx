@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import AppHeader from './appHeader';
+import AppHeader from './AppHeader';
 import AppFooret from './AppFooter';
 import AppSider from './AppSider';
 import AppContent from './AppContent';
