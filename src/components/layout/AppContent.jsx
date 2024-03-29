@@ -12,6 +12,7 @@ const contentStyle = {
 	color: '#fff',
 	backgroundColor: '#001529',
 	padding: '1rem',
+	overflowX: 'hidden'
 };
 
 
@@ -34,7 +35,7 @@ export default function AppContent(params) {
 		<Layout.Content style={contentStyle}>
 			<Typography.Title
 				level={3}
-				style={{ textAlign: 'left', color: '#fff' }}>
+				style={{ textAlign: 'left', color: '#fff', }}>
 				Portfolio:{' '}
 				{assets
 					.map((asset) => {
