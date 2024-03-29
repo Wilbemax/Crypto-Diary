@@ -2,6 +2,8 @@ import { Layout, Typography } from 'antd';
 import { useCrypto } from '../../context/crypto-context';
 import PortfoilioChart from '../PortfoilioChart';
 import AssetsTable from '../AssetsTable';
+import { useState, useEffect } from 'react';
+import CardList from '../Card';
 const contentStyle = {
 	textAlign: 'center',
 	display: 'flex',
@@ -12,7 +14,21 @@ const contentStyle = {
 	padding: '1rem',
 };
 
+
 export default function AppContent(params) {
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setWindowWidth(window.innerWidth);
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
 	const { assets, crypto } = useCrypto();
 	return (
 		<Layout.Content style={contentStyle}>
@@ -28,7 +44,8 @@ export default function AppContent(params) {
 					.reduce((acc, v) => (acc += v), 0).toFixed(2)} $
 			</Typography.Title>
 			<PortfoilioChart />
-			<AssetsTable />
+			{windowWidth >= 800 ? <AssetsTable /> : <CardList assets={assets}/>}
+			
 		</Layout.Content>
 	);
 }

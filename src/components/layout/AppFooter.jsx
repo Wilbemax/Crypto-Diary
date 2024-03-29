@@ -1,15 +1,25 @@
 import { Layout } from 'antd';
 
 const footerStyle = {
-	textAlign: 'center',
-	color: '#fff',
-	height: 60,
-	backgroundColor: '#4096ff',
+	padding: '1rem',
 };
 
-
 export default function AppFooret() {
-    return(
-		<Layout.Footer style={footerStyle}>Footer</Layout.Footer>
-		)
+	return (
+		<Layout.Footer
+			style={{
+				backgroundColor: '#001529',
+				color: '#08131F',
+				textAlign: 'center',
+			}}>
+			<div>
+				<a
+					style={{ color: '#436C94' }}
+					href="https://github.com/Wilbemax"
+					target="_blank">
+					@Wilbemax 2024
+				</a>
+			</div>
+		</Layout.Footer>
+	);
 }

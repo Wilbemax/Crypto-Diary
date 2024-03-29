@@ -17,21 +17,21 @@ const columns = [
 	{
 		title: 'Amount',
 		dataIndex: 'amount',
-        defaultSortOrder: 'descend',
+		defaultSortOrder: 'descend',
 		sorter: (a, b) => a.amount - b.amount,
 	},
 ];
 
-
 export default function AssetsTable(params) {
 	const { assets } = useCrypto();
-    const data =  assets.map(asset => ({
-        key: asset.id,
-        name: asset.name,
-        price: asset.price,
-        amount: asset.amount,
-    }))
-	
+	console.log(assets);
+	const data = assets.map((asset) => ({
+		key: asset.id,
+		name: asset.name,
+		price: asset.totalAmount.toFixed(2),
+		amount: asset.amount,
+	}));
+
 	return (
 		<Table
 			pagination={false}

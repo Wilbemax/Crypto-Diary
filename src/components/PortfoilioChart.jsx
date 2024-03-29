@@ -8,12 +8,12 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export default function PortfoilioChart() {
 	const { assets } = useCrypto();
 
-	 const data = {
+	const data = {
 		labels: assets.map((a) => a.name),
 		datasets: [
 			{
 				label: '$',
-				data: assets.map(a => a.totalAmount),
+				data: assets.map((a) => a.totalAmount),
 				backgroundColor: [
 					'rgba(255, 99, 132, 1)',
 					'rgba(54, 162, 235, 1)',
@@ -31,7 +31,8 @@ export default function PortfoilioChart() {
 				display: 'flex',
 				marginBottom: '1rem',
 				justifyContent: 'center',
-				height: 400,
+				height: '80%',
+				maxHeight: '400px',
 			}}>
 			<Pie data={data} />
 		</div>

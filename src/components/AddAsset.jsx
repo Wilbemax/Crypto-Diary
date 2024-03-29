@@ -30,14 +30,8 @@ export default function AddAsset({ onClose }) {
 		};
 		assetRef.current = newAsset;
 		setSubmeted(true);
-		
-		const existAsset = assets.find((asset) => coin.id === asset.id);
 
-		if (existAsset) {
-			updateAsset(coin.id, newAsset);
-		} else {
-			addNewAsset(newAsset);
-		}
+		addNewAsset(newAsset);
 	};
 
 	const onChange = (date, dateString) => {
