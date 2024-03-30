@@ -6,8 +6,10 @@ import {
 } from '@ant-design/icons';
 
 import { capitalize } from '../utils';
+import { useCrypto } from '../context/crypto-context';
 
 export default function CardList({ assets }) {
+	const {deletAsset} = useCrypto()
 	return (
 		<div>
 			{assets.map((asset) => (

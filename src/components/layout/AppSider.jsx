@@ -10,7 +10,7 @@ const siderStyle = {
 };
 
 export default function AppSider() {
-	const { loading, assets, deletAsset } = useContext(CryptoConext);
+	const { loading, assets } = useContext(CryptoConext);
 
 	if (loading) {
 		return <Spin fullscreen />;
